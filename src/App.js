@@ -1,4 +1,3 @@
-import React from "react";
 import BoxList from "./BoxList/BoxList";
 import "./App.css";
 
