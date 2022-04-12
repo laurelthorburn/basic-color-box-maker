@@ -11,19 +11,22 @@ const [backgroundColor, setBackgroundColor] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("You clicked submit")
+        console.log(width)
+        console.log(height)
+        console.log(backgroundColor)
     }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label name="width">Width:</label>
-        <input type="text" id="width" />
+        <input type="number" onChange={(e) => setWidth(e.target.value)} id="width" />
 
         <label name="height">Height:</label>
-        <input type="text" id="height" />
+        <input type="number" onChange={(e) => setHeight(e.target.value)} id="height" />
 
         <label name="backgroundColor">Background Color:</label>
-        <input type="text" id="backgroundColor" />
+        <input type="text" onChange={(e) => setBackgroundColor(e.target.value)} id="backgroundColor" />
         <button>Create Your Box 🪄</button>
       </form>
       
