@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Box from '../Box/Box';
+import uuid from 'uuid';
 
 //this component should render a form that when submitted, creates a new Box. You should be able to specify the Box's width, height, and background color. When the form is submitted, clear the inputs values
 
@@ -20,7 +21,7 @@ const boxArray = [];
         boxArray.push({'height': height, 'width': width, 'backgroundColor' : backgroundColor})
         console.log(boxArray)
         setBox(boxArray.map(box =>{ return (
-            <Box width={`${box.width}`} height={`${box.height}`} backgroundColor={`${box.backgroundColor}`} />
+            <Box key={uuid()} width={`${box.width}`} height={`${box.height}`} backgroundColor={`${box.backgroundColor}`} />
         )}))
     }
 
