@@ -10,25 +10,33 @@ const [height, setHeight] = useState("");
 const [backgroundColor, setBackgroundColor] = useState("");
 const [box, setBox] = useState("");
 
+const boxArray = [];
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBox(<Box width={`${width}`} height={`${height}`} backgroundColor={`${backgroundColor}`} />);
+        setWidth(e.target.value);
+        setHeight(e.target.value);
+        setBackgroundColor(e.target.value);
+        boxArray.push({'height': height, 'width': width, 'backgroundColor' : backgroundColor})
+        console.log(boxArray)
+        setBox(boxArray.map(box =>{ return (
+            <Box width={`${box.width}`} height={`${box.height}`} backgroundColor={`${box.backgroundColor}`} />
+        )}))
     }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label name="width">Width:</label>
-        <input type="number" onChange={(e) => setWidth(e.target.value)} id="width" />
+        <input type="text" onChange={(e) => setWidth(e.target.value)} id="width" />
 
         <label name="height">Height:</label>
-        <input type="number" onChange={(e) => setHeight(e.target.value)} id="height" />
+        <input type="text" onChange={(e) => setHeight(e.target.value)} id="height" />
 
         <label name="backgroundColor">Background Color:</label>
         <input type="text" onChange={(e) => setBackgroundColor(e.target.value)} id="backgroundColor" />
         <button>Create Your Box 🪄</button>
       </form>
-      
       {box}
     </>
   );
