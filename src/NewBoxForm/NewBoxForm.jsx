@@ -17,13 +17,21 @@ const NewBoxForm = () => {
       height: height,
       width: width,
       backgroundColor: backgroundColor,
+      id: uuid()
     };
     setBoxArray([...boxArray, currentBox]);
+    console.log(boxArray)
+    handleClear();
   };
 
-  const handleDelete = () => {
-    console.log("You tried to delete me sucka");
+  const handleClear = () => {
+    setWidth("");
+    setHeight("");
+    setBackgroundColor("");
+  };
 
+  function handleDelete(id){
+    setBoxArray(boxArray.filter(box => box.id !== id));
   };
 
   return (
@@ -34,6 +42,7 @@ const NewBoxForm = () => {
           type="text"
           onChange={(e) => setWidth(e.target.value)}
           id="width"
+          value={width}
         />
 
         <label name="height">Height:</label>
@@ -41,6 +50,7 @@ const NewBoxForm = () => {
           type="text"
           onChange={(e) => setHeight(e.target.value)}
           id="height"
+          value={height}
         />
 
         <label name="backgroundColor">Background Color:</label>
@@ -48,6 +58,7 @@ const NewBoxForm = () => {
           type="text"
           onChange={(e) => setBackgroundColor(e.target.value)}
           id="backgroundColor"
+          value={backgroundColor}
         />
         <button>Create Your Box 🪄</button>
       </form>
@@ -56,12 +67,14 @@ const NewBoxForm = () => {
             return (
               <>
                 <Box
-                  key={boxArray[box.i]}
-                  width={`${box.width}`}
-                  height={`${box.height}`}
-                  backgroundColor={`${box.backgroundColor}`}
+                  key={box.id}
+                  id={box.id}
+                  width={box.width}
+                  height={box.height}
+                  backgroundColor={box.backgroundColor}
                 />
-                <button onClick={handleDelete}>Remove box</button>
+                <button onClick={() => handleDelete(box.id)}>Remove box</button>
+
               </>
             );
           })
