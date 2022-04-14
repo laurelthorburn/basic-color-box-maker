@@ -9,16 +9,17 @@ const NewBoxForm = () => {
 const [width, setWidth] = useState("");
 const [height, setHeight] = useState("");
 const [backgroundColor, setBackgroundColor] = useState("");
-// 
+const [boxArray, setBoxArray] = useState([]);
 
-const boxArray = [];
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setWidth(e.target.value);
         setHeight(e.target.value);
         setBackgroundColor(e.target.value);
-        boxArray.push({'height': height, 'width': width, 'backgroundColor' : backgroundColor})
+        const currentBox = {'height': height, 'width': width, 'backgroundColor' : backgroundColor}
+        setBoxArray([...boxArray, currentBox])
+
         console.log(boxArray)
     }
 
@@ -35,9 +36,9 @@ const boxArray = [];
         <input type="text" onChange={(e) => setBackgroundColor(e.target.value)} id="backgroundColor" />
         <button>Create Your Box 🪄</button>
       </form>
-      {boxArray.map(box =>{ return (
+      {boxArray.length > 0 ? boxArray.map(box =>{ return (
             <Box key={uuid()} width={`${box.width}`} height={`${box.height}`} backgroundColor={`${box.backgroundColor}`} />
-        )})}
+        )}) : ""}
     </>
   );
 };
